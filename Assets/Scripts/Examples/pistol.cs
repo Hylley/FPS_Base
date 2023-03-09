@@ -15,7 +15,7 @@ public class pistol : Gun, IInteractable
 
     public override void Shoot()
     {
-        Debug.Log("Shoot!");
+        Debug.Log("Shoot 2!");
         inCooldown = true;
         // ----
         StartCoroutine(ShowGunFeedbackFire());
@@ -30,9 +30,12 @@ public class pistol : Gun, IInteractable
             if(hit.transform.GetComponent<IEntity>() != null)
             {
                 hit.transform.GetComponent<IEntity>().TakeDamage(damage);
-                Debug.Log("Hit entity!");
+                StartCoroutine(UIManager.instance.ShowShotIndicator());
             }
         }
+
+        transform.position = transform.position - transform.forward * 3;
+        transform.rotation = Quaternion.Euler(transform.rotation.x - 45, transform.rotation.y, transform.rotation.z);
 
         // ----
         StartCoroutine(WaitCooldown());

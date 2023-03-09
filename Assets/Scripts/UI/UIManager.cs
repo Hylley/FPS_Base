@@ -8,18 +8,19 @@ public class UIManager : MonoBehaviour
     
     public GameObject interactableFeddbackGUI;
 
+    public GameObject normalShotCrosshairIndicator;
+    public GameObject headshotCrosshairIndicato;
+    public float shotIndicatorStayTime = .1f;
+
     void Awake()
     {
         instance = this;
     }
 
-    void Start()
+    public IEnumerator ShowShotIndicator()
     {
-        
-    }
-
-    void Update()
-    {
-        
+        normalShotCrosshairIndicator.SetActive(true);
+        yield return new WaitForSeconds(shotIndicatorStayTime);
+        normalShotCrosshairIndicator.SetActive(false);
     }
 }
