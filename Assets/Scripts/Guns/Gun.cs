@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
 public class Gun : MonoBehaviour, IInteractable
 {
     public bool active;
@@ -20,9 +19,8 @@ public class Gun : MonoBehaviour, IInteractable
         StartCoroutine(WaitCooldown());
     }
 
-    public void Interact(playerBrain plr)
+    public virtual void Interact(playerBrain plr)
     {
-        GetComponent<Rigidbody>().isKinematic = true;
         plr.Equip(this);
         player = plr;
     }

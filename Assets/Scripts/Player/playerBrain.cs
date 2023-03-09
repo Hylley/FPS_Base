@@ -21,9 +21,10 @@ public class playerBrain : MonoBehaviour, IEntity
 
     void Update()
     {
+        // Player vision -----------------------------------------------------
+        
         Ray ray = new Ray(plrLook.transform.position, plrLook.transform.forward);
         RaycastHit hit;
-
         if(Physics.Raycast(ray, out hit, maxVisionDistance))
         {
             if(hit.transform.GetComponent<IInteractable>() != null)
@@ -34,18 +35,16 @@ public class playerBrain : MonoBehaviour, IEntity
                 {
                     hit.transform.GetComponent<IInteractable>().Interact(this);
                 }
-            }else
+            }
+            else
             {
                 UIManager.instance.interactableFeddbackGUI.SetActive(false);
             }
         }
 
-        // -----------------------------------------------------
+        // Shoot logic -----------------------------------------------------
 
-        if(!equippedGun || equippedGun.inCooldown || !equippedGun.active)
-        {
-            return;
-        }
+        if(!equippedGun || equippedGun.inCooldown || !equippedGun.active) { return; }
 
         if(Input.GetMouseButton(0))
         {
@@ -64,10 +63,7 @@ public class playerBrain : MonoBehaviour, IEntity
 
     public void Equip(Gun newGun)
     {
-        if(equippedGun)
-        {
-            equippedGun.active = false;
-        }
+        if(equippedGun) { equippedGun.active = false; }
 
         equippedGun = newGun;
         newGun.active = true;

@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour, IEntity
     public void TakeDamage(int damage)
     {
         if(!active)
-        {
+        {   
             return;
         }
         
