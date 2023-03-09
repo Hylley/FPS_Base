@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class playerLook : MonoBehaviour
 {
-    public playerBrain brain;
+    public Transform playerBody;
 
     public float sensibility;
     public Vector3 cameraOffset = new Vector3(0, 1, 0);
@@ -25,8 +25,8 @@ public class playerLook : MonoBehaviour
         xRot = Mathf.Clamp(xRot, -90f, 90f);
 
         transform.rotation = Quaternion.Euler(xRot, yRot, 0);
-        brain.plrMove.transform.rotation = Quaternion.Euler(0, yRot, 0);
+        playerBody.rotation = Quaternion.Euler(0, yRot, 0);
 
-        transform.position = brain.plrMove.transform.position + cameraOffset;
+        transform.position = playerBody.position + cameraOffset;
     }
 }

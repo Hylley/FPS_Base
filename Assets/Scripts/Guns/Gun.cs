@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-public class baseGun : MonoBehaviour, IInteractable
+public class Gun : MonoBehaviour, IInteractable
 {
     public bool active;
 

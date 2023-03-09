@@ -39,16 +39,16 @@ public class playerMove : MonoBehaviour
 
     void MoveHandler()
     {
-        xMov = new Vector2(Input.GetAxisRaw("Horizontal") * transform.right.x, Input.GetAxisRaw("Horizontal") * transform.right.z);
-        zMov = new Vector2(Input.GetAxisRaw("Vertical") * transform.forward.x, Input.GetAxisRaw("Vertical") * transform.forward.z);
+        xMov = new Vector2(Input.GetAxis("Horizontal") * transform.right.x, Input.GetAxis("Horizontal") * transform.right.z);
+        zMov = new Vector2(Input.GetAxis("Vertical") * transform.forward.x, Input.GetAxis("Vertical") * transform.forward.z);
         
         if(Input.GetKey(sprintKey))
         {
-            direction = (xMov + zMov).normalized * sprintSpeed;
+            direction = (xMov + zMov) * sprintSpeed;
         }
         else
         {
-            direction = (xMov + zMov).normalized * walkSpeed;
+            direction = (xMov + zMov) * walkSpeed;
         }
 
         rb.velocity = new Vector3(direction.x, rb.velocity.y, direction.y);

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class pistol : baseGun, IInteractable
+public class pistol : Gun, IInteractable
 {
     public int damage;
     public float shootMaximumDistance = 100;
-    public Transform tip;
+    public LayerMask raycastLayerMask;
 
     public override void Shoot()
     {
@@ -17,7 +17,7 @@ public class pistol : baseGun, IInteractable
         Ray ray = new Ray(player.plrLook.transform.position, player.plrLook.transform.forward);
         RaycastHit hit;
 
-        if(Physics.Raycast(ray, out hit, shootMaximumDistance))
+        if(Physics.Raycast(ray, out hit, shootMaximumDistance, raycastLayerMask))
         {
             Debug.Log("Hit: " + hit.transform);
 

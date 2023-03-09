@@ -6,6 +6,7 @@ public class playerBrain : MonoBehaviour, IEntity
 {
     public playerLook plrLook;
     public playerMove plrMove;
+    
     [Header("Player Status")]
     public float health = 100;
 
@@ -14,7 +15,7 @@ public class playerBrain : MonoBehaviour, IEntity
     public float maxVisionDistance;
 
     [Header("Gun equipment")]
-    public baseGun equippedGun;
+    public Gun equippedGun;
     public Transform hand;
     public float lerpSpeed = .1f;
 
@@ -61,7 +62,7 @@ public class playerBrain : MonoBehaviour, IEntity
         }
     }
 
-    public void Equip(baseGun newGun)
+    public void Equip(Gun newGun)
     {
         if(equippedGun)
         {
