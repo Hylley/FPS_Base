@@ -36,6 +36,7 @@ public class pistol : Gun, IInteractable
 
         transform.position = transform.position - transform.forward * 3;
         transform.rotation = Quaternion.Euler(transform.rotation.x - 45, transform.rotation.y, transform.rotation.z);
+        GetComponent<AudioSource>().Play();
 
         // ----
         StartCoroutine(WaitCooldown());
