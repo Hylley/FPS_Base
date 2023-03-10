@@ -6,6 +6,7 @@ using UnityEngine;
 public class playerMove : MonoBehaviour
 {
     public playerBrain brain;
+    public bool moveAllow = true;
 
     [Header("Base Values")]
     public float walkSpeed;
@@ -39,6 +40,8 @@ public class playerMove : MonoBehaviour
 
     void MoveHandler()
     {
+        if(!moveAllow || !isGrounded) return;
+        
         xMov = new Vector2(Input.GetAxis("Horizontal") * transform.right.x, Input.GetAxis("Horizontal") * transform.right.z);
         zMov = new Vector2(Input.GetAxis("Vertical") * transform.forward.x, Input.GetAxis("Vertical") * transform.forward.z);
         

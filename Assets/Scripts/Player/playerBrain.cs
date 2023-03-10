@@ -16,8 +16,12 @@ public class playerBrain : MonoBehaviour, IEntity
 
     [Header("Gun equipment")]
     public Gun equippedGun;
-    public Transform hand;
+    public Transform rightHand;
     public float lerpSpeed = .1f;
+
+    [Header("Grapple equipment")]
+    public grappler equippedGrappler;
+    public Transform leftHand;
 
     void Update()
     {
@@ -44,7 +48,7 @@ public class playerBrain : MonoBehaviour, IEntity
 
         // Shoot logic -----------------------------------------------------
 
-        if(!equippedGun || equippedGun.inCooldown || !equippedGun.active) { return; }
+        if(!equippedGun || !equippedGun.active || equippedGun.inCooldown) return;
 
         if(Input.GetMouseButton(0))
         {
@@ -56,8 +60,13 @@ public class playerBrain : MonoBehaviour, IEntity
     {
         if(equippedGun)
         {
-            equippedGun.transform.position = Vector3.Lerp(equippedGun.transform.position, hand.position, lerpSpeed);
-            equippedGun.transform.rotation = Quaternion.Lerp(equippedGun.transform.rotation, hand.rotation, lerpSpeed);
+            equippedGun.transform.position = Vector3.Lerp(equippedGun.transform.position, rightHand.position, lerpSpeed);
+            equippedGun.transform.rotation = Quaternion.Lerp(equippedGun.transform.rotation, rightHand.rotation, lerpSpeed);
+        }
+
+        if(equippedGrappler)
+        {
+            equippedGrappler.transform.position = Vector3.Lerp(equippedGrappler.transform.position, leftHand.position, lerpSpeed);
         }
     }
 
